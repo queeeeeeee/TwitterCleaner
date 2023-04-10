@@ -1,0 +1,16 @@
+{
+    "name": "Twitter Cleaner",
+    "version": "0.0.0.1",
+    "description": "Deletes every tweet of user",
+    "permissions": ["tabs"],
+    "content_scripts": [{
+        "matches": ["https://*.twitter.com/*"],
+        "js": ["contentScript.js"]
+    }],
+    "action": {
+        "default_icon": "icon.png",
+        "default_title": "Twitter Cleaner",
+        "default_popup": "popup.html"
+    },
+    "manifest_version": 3
+}

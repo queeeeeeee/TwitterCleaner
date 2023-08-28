@@ -133,13 +133,12 @@ async function OnTweetClean(message) {
             break
         var deletecount = 0;
 
-        var timelineElement = document.querySelectorAll('[aria-label^="타임라인:"][aria-label$="님의 트윗"]');
+        var timelineElement = document.querySelectorAll('[aria-label^="타임라인:"]');
         if (timelineElement.length == 0) {
             throw ("Timeline find failed");
         }
 
         var cellInnverDives = timelineElement[0].querySelectorAll('[data-testid="cellInnerDiv"]');
-
         for (var i = 0; i < cellInnverDives.length; i++) {
             var cellElement = cellInnverDives[i];
 
@@ -148,8 +147,8 @@ async function OnTweetClean(message) {
 
             var socialContext = cellElement.querySelectorAll('[data-testid="socialContext"]');
             if (socialContext.length != 0) {
-                if (socialContext[0].childNodes[0].textContent == "내가 리트윗함" && deleteRetweet) {
-                    var unretweet = cellElement.querySelectorAll('[aria-label$="리트윗함"]');
+                if (socialContext[0].childNodes[0].textContent == "재게시했습니다" && deleteRetweet) {
+                    var unretweet = cellElement.querySelectorAll('[aria-label$="재게시. 재게시함"]');
 
                     if (unretweet.length == 0) {
                         continue;
@@ -160,7 +159,7 @@ async function OnTweetClean(message) {
                     var unretweetConfirm = document.querySelectorAll('[data-testid="unretweetConfirm"]');
                     unretweetConfirm[0].click();
                     deletecount += 1;
-                    showPopup("리트윗 삭제됨!", '#19CF86')
+                    //showPopup("리트윗 삭제됨!", '#19CF86')
                 }
             } else if (deleteMytweet) {
                 var moreButton = cellElement.querySelectorAll('[aria-label="더 보기"]');
@@ -185,7 +184,7 @@ async function OnTweetClean(message) {
                     if (button.length != 0) {
                         button[0].click();
                         deletecount += 1;
-                        showPopup("내 트윗 삭제됨!", '#55ACEE')
+                        //showPopup("내 트윗 삭제됨!", '#55ACEE')
                     }
                 } else {
                     dropdown[0].parentNode.removeChild(dropdown[0]);
@@ -215,7 +214,7 @@ async function OnHeartClean(message) {
     var skipSet = new Set();
     var totalDeleteCount = 0
 
-    var timelineElement = document.querySelectorAll('[aria-label^="타임라인:"][aria-label$="님이 마음에 들어 한 트윗"]');
+    var timelineElement = document.querySelectorAll('[aria-label^="타임라인:"]');
     if (timelineElement.length == 0) {
         throw ("Timeline find failed");
     }
@@ -231,7 +230,7 @@ async function OnHeartClean(message) {
             if (unlike.length == 0)
                 continue
             unlike[0].click()
-            showPopup("마음 취소됨!", '#E0245E')
+                //showPopup("마음 취소됨!", '#E0245E')
             totalDeleteCount++
         }
 
